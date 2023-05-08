@@ -12,20 +12,17 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
        StartCoroutine(SpawnRandomAnimal());
-       StartCoroutine(SayHello());
     }      
 
     IEnumerator SpawnRandomAnimal()
     {
-        Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0 , spawnPosZ);
-        int animalIndex = Random.Range(0, animalPrefabs.Length);
-        Instantiate(animalPrefabs[animalIndex], spawnPos, animalPrefabs[animalIndex].transform.rotation);
-        yield return new WaitForSeconds(1);
-    }
-
-    IEnumerator SayHello(){
-        Debug.Log("Hello World!");
-        yield return new WaitForSeconds(1f);
+        while (true){
+            Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0 , spawnPosZ);
+            int animalIndex = Random.Range(0, animalPrefabs.Length);
+            Instantiate(animalPrefabs[animalIndex], spawnPos, animalPrefabs[animalIndex].transform.rotation);
+            yield return new WaitForSeconds(.4f);
+        }
+        
     }
 
 }
